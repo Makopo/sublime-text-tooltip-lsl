@@ -1,0 +1,3 @@
+{
+    "llListen": "Function: integer <a href=\"https://wiki.secondlife.com/w/index.php?title=Special:Search&go=Go&search=llListen\">llListen</a>( integer channel, string name, key id, string msg );<p>Sets a callback for msg on channel from name and id (name, id, and/or msg can be empty) and returns an identifier that can be used to deactivate or remove the listen</p><p>0.0 Forced Delay, 10.0 Energy</p>"
+}

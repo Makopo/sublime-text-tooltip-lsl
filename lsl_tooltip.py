@@ -1,5 +1,6 @@
 import sublime, sublime_plugin
 import os
+import json
 # import xml.etree.ElementTree as etree
 
 class LslTooltipListener(sublime_plugin.EventListener):
@@ -61,9 +62,7 @@ class LslTooltipCommand(sublime_plugin.TextCommand):
         #     print(e)
 
         # Fixed string for now lol
-        self.view.show_popup('Function: integer <a href="https://wiki.secondlife.com/w/index.php?title=Special:Search&go=Go&search=llListen">llListen</a>( integer channel, string name, key id, string msg );<p>Sets a callback for msg on channel from name and id (name, id, and/or msg can be empty) and returns an identifier that can be used to deactivate or remove the listen</p><p>0.0 Forced Delay, 10.0 Energy</p>',
-            location=-1, max_width=600, max_height=350
-        )
+        self.view.show_popup(TooltipData['llListen'], location=-1, max_width=600, max_height=350)
 
         Pref.isActive = True
         Pref.word = word
@@ -71,6 +70,7 @@ class LslTooltipCommand(sublime_plugin.TextCommand):
 def plugin_loaded():
     global Pref
     # global KWDB
+    global TooltipData
 
     class Pref:
         def load(self):
@@ -79,6 +79,9 @@ def plugin_loaded():
             Pref.word = ""
     Pref = Pref()
     Pref.load()
+
+    with open(os.path.join(sublime.packages_path(), 'TooltipLSL', 'tooltipdata.json')) as data_file:    
+        TooltipData = json.load(data_file)
 
  #    kwdbElementTree = etree.parse(os.path.join(sublime.packages_path(), 'TooltipLSL', 'kwdb.xml'))
  #    KWDB = kwdbElementTree.getroot()
