@@ -62,7 +62,7 @@ class LslTooltipCommand(sublime_plugin.TextCommand):
         #     print(e)
 
         # Fixed string for now lol
-        self.view.show_popup(TooltipData['llListen'], location=-1, max_width=600, max_height=350)
+        self.view.show_popup(TooltipData[word], location=-1, max_width=600, max_height=350)
 
         Pref.isActive = True
         Pref.word = word
