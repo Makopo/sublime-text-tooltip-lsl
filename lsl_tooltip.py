@@ -33,7 +33,6 @@ class LslTooltipCommand(sublime_plugin.TextCommand):
 
 def plugin_loaded():
     global Pref
-    # global KWDB
     global TooltipData
 
     class Pref:
