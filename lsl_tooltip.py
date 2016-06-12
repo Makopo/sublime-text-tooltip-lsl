@@ -1,6 +1,7 @@
 import sublime, sublime_plugin
 import os
 import json
+import webbrowser
 # import xml.etree.ElementTree as etree
 
 class LslTooltipListener(sublime_plugin.EventListener):
@@ -62,10 +63,13 @@ class LslTooltipCommand(sublime_plugin.TextCommand):
         #     print(e)
 
         # Fixed string for now lol
-        self.view.show_popup(TooltipData[word], location=-1, max_width=600, max_height=350)
+        self.view.show_popup(TooltipData[word], location=-1, max_width=600, max_height=350, on_navigate=self.on_navigate)
 
         Pref.isActive = True
         Pref.word = word
+
+    def on_navigate(self, link):
+        webbrowser.open_new_tab(link)
 
 def plugin_loaded():
     global Pref
