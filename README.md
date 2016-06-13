@@ -46,7 +46,7 @@ While inside the `Packages` directory, clone the plugin repository using the com
 
 1. Place the CARET on the name of function/constant/event.
 2. Right click to show the context menu.
-3. Select `Show in LSL Referenct`, even for OSSL features.
+3. Select `Show in LSL Reference`, even for OSSL features.
 
 ![tooltip1](https://raw.githubusercontent.com/Makopo/sublime-text-tooltip-lsl/forimages/tooltip1.png)
 ![tooltip2](https://raw.githubusercontent.com/Makopo/sublime-text-tooltip-lsl/forimages/tooltip2.png)
