@@ -22,7 +22,7 @@ class LslTooltipCommand(sublime_plugin.TextCommand):
         # select word
         word = self.view.substr(self.view.word(self.view.sel()[0]))
 
-        # Fixed string for now lol
+        # display popup
         self.view.show_popup(TooltipData[word], location=-1, max_width=600, max_height=350, on_navigate=self.on_navigate)
 
         Pref.isActive = True
