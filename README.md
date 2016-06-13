@@ -52,11 +52,11 @@ While inside the `Packages` directory, clone the plugin repository using the com
 ![tooltip2](https://raw.githubusercontent.com/Makopo/sublime-text-tooltip-lsl/forimages/tooltip2.png)
 
 * You can use this feature on any type of file, even on simple text file.
-* You don't requrire to use my LSL/OSSL plugin to use this plugin.
+* You are not required to use [my LSL/OSSL plugin](https://github.com/Makopo/sublime-text-lsl) to use this plugin.
 
 ## Shortcut Key Assignment
 
-To "Key Bindings - User", add (e.g. super+shift+w key for OSX):
+To "Key Bindings - User", add (e.g. <kbd>Command</kbd><kbd>Shift</kbd><kbd>W</kbd> key for OSX):
 ```json
 [
     { "keys": ["super+shift+w"], "command": "lsl_tooltip" }
