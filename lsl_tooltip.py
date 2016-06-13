@@ -42,6 +42,4 @@ def plugin_loaded():
     Pref = Pref()
     Pref.load()
 
-    with open(os.path.join(sublime.packages_path(), 'TooltipLSL', 'tooltipdata.json')) as data_file:    
-        TooltipData = json.load(data_file)
-
+    TooltipData = json.loads(sublime.load_resource("Packages/TooltipLSL/tooltipdata.json"))
