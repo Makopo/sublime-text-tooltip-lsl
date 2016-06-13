@@ -56,7 +56,7 @@ While inside the `Packages` directory, clone the plugin repository using the com
 
 ## Shortcut Key Assignment
 
-To "Key Bindings - User", add (e.g. super+shift+w key for OSX):
+To "Key Bindings - User", add (e.g. <kbd>Command</kbd><kbd>Shift</kbd><kbd>W</kbd> key for OSX):
 ```json
 [
     { "keys": ["super+shift+w"], "command": "lsl_tooltip" }
