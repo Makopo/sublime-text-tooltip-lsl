@@ -1,5 +1,4 @@
 import sublime, sublime_plugin
-import os
 import json
 import webbrowser
 
