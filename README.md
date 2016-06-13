@@ -46,7 +46,7 @@ While inside the `Packages` directory, clone the plugin repository using the com
 
 1. Place the CARET on the name of function/constant/event.
 2. Right click to show the context menu.
-3. Select "Show in LSL Referenct", event for OSSL features.
+3. Select "Show in LSL Referenct", even for OSSL features.
 
 * You can use this feature on any type of file, even on simple text file.
 * You don't requrire to use my LSL/OSSL plugin to use this plugin.
