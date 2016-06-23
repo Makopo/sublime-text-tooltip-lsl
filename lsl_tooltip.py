@@ -31,6 +31,9 @@ class Lsl(sublime_plugin.TextCommand):
         if not TooltipData:
             return
 
+        if not TooltipData[word]:
+            return
+
         self.view.show_popup(
             TooltipData[word],
             flags=sublime.COOPERATE_WITH_AUTO_COMPLETE|sublime.HIDE_ON_MOUSE_MOVE_AWAY,
