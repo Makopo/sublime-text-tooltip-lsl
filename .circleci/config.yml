@@ -1,0 +1,56 @@
+version: 2.1
+
+jobs:
+  merge-kwdb:
+    docker:
+      - image: cimg/python:3.11
+    resource_class: small
+    steps:
+      - checkout
+      - run:
+          name: clone kwdb-sublime
+          command: |
+            cd /tmp
+            git clone --depth 1 https://github.com/Makopo/kwdb_to_sublime
+      - run:
+          name: install perl modules
+          command: |
+            curl -L https://cpanmin.us | sudo perl - App::cpanminus
+            sudo cpanm install Text::Template Regexp::Assemble
+      - run:
+          name: run kwdb-sublime
+          command: |
+            cd /tmp/kwdb_to_sublime
+            curl https://raw.githubusercontent.com/Sei-Lisa/kwdb/master/lsl2dfg/LSL2dfg.py -o lsl2dfg/LSL2dfg.py
+            curl https://raw.githubusercontent.com/Sei-Lisa/kwdb/master/database/kwdb.xml -o kwdb.xml
+            export OUTPUT_DIR="${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}"
+            python lsl2dfg/LSL2dfg.py -u -d kwdb.xml -f sublime_tooltip_data -g sl,os -i inputs/tooltipdata.json.in -o "${OUTPUT_DIR}/tooltipdata.json" -y
+            python lsl2dfg/LSL2dfg.py --version --grid=sl,os --database=kwdb.xml > ${OUTPUT_DIR}/kwdb_version.txt
+      - run:
+          name: update README.md
+          command: |
+            SL_VERSION=$(awk '/Second Life/{print $NF}' kwdb_version.txt)
+            OSSL_VERSION=$(awk '/OpenSimulator/{print $NF}' kwdb_version.txt)
+            KWDB_VERSION=$(awk '/Generator/{print $NF}' kwdb_version.txt)
+            sed -i -e "s/^* LSL .*/* LSL [\\\*.lsl]: Second Life ${SL_VERSION}/; s/^* OSSL.*/* OSSL [\\\*.ossl]: OpenSimulator ${OSSL_VERSION}/; s/^\[kwdb\].*/\[kwdb\](https:\/\/github.com\/Sei-Lisa\/kwdb) version ${KWDB_VERSION}/" README.md
+      - add_ssh_keys:
+          fingerprints:
+            - "6d:5b:99:f0:43:74:b5:93:11:ec:38:85:6f:33:1b:44"
+      - run:
+          name: git push
+          command: |
+            git add .
+            CONTINUE=0 && git diff --cached --exit-code --quiet || CONTINUE=1
+            if [ $CONTINUE -eq 1 ] ; then
+              git config user.name "Makopoppo(via CircleCI)"
+              git config user.email "bokemako@gmail.com"
+              KWDB_VERSION=$(tail -n +2 kwdb_version.txt)
+              git commit -m "kwdb ${KWDB_VERSION}
+            [skip ci]"
+              git push --set-upstream origin ${CIRCLE_BRANCH}
+            fi
+
+workflows:
+  merge-kwdb:
+    jobs:
+      - merge-kwdb
