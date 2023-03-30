@@ -4,7 +4,7 @@ LSL/OSSL Tooltip Reference for Sublime Text
 # Current supported language
 
 * LSL [\*.lsl]: Second Life 2023-01-11.577595
-* OSSL [\*.ossl]: OpenSimulator v0.9.0.0-rc2
+* OSSL [\*.ossl]: OpenSimulator v0.9.2.1
   - Including mod\*, os\*, wl\*(LightShare) functions
 
 [kwdb](https://github.com/Sei-Lisa/kwdb) version 0.0.20140116001
